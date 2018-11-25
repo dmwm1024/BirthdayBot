@@ -30,7 +30,7 @@ namespace BirthdayBot
                 .AddSingleton(_commands)
                 .BuildServiceProvider();
 
-            string botToken = "token is secret";
+            string botToken = "token is secret nerds";
 
             _client.Log += Log;
 
