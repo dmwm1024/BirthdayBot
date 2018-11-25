@@ -14,7 +14,7 @@ namespace BirthdayBot.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder Options)
         {
-            //string DbLocation = Assembly.GetEntryAssembly().Location.Replace(@"bin\Debug\BirthdayBot.exe", @"Data\");
+            // Yes, I'm lazy. I'll rewrite this for portability later. Don't @ me.
             string DbLocation = @"C:\Users\Kade\source\repos\BirthdayBot\BirthdayBot\Data\Database.sqlite";
             Options.UseSqlite($"Data Source={DbLocation}");
         }
