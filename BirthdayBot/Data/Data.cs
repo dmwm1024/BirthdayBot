@@ -1,14 +1,12 @@
 ﻿using BirthdayBot.Database;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BirthdayBot.Data
 {
     public static class Data
     {
+        // Gather an array of the birthdays on record (Uses MS Entity Framework)
         public static Birthday[] GetBirthdays()
         {
             using (var DbContext = new SqliteDbContext())
@@ -17,6 +15,7 @@ namespace BirthdayBot.Data
             }
         } 
 
+        // Method for saving/updating records
         public static async Task SaveBirthday(ulong UserId, int Month, int Day)
         {
             using (var DbContext = new SqliteDbContext())

@@ -3,11 +3,11 @@ using Discord.Commands;
 using Discord.WebSocket;
 using System.Linq;
 using System.Threading.Tasks;
-using BirthdayBot.Data;
 using BirthdayBot.Database;
 
 namespace BirthdayBot.Modules
 {
+    // Returns an embed listing known users/birthdays.
     public class list : ModuleBase<SocketCommandContext>
     {
         [Command("list")]

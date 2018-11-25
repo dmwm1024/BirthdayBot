@@ -3,10 +3,10 @@ using Discord.Commands;
 using Discord.WebSocket;
 using System.Linq;
 using System.Threading.Tasks;
-using BirthdayBot.Data;
 
 namespace BirthdayBot.Modules
 {
+    // Provides users command syntax for using the bot.
     public class help : ModuleBase<SocketCommandContext>
     {
         [Command("help")]

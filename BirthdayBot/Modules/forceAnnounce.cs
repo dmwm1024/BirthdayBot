@@ -1,13 +1,12 @@
-﻿using Discord;
-using Discord.Commands;
+﻿using Discord.Commands;
 using Discord.WebSocket;
 using System.Linq;
 using System.Threading.Tasks;
-using BirthdayBot.Data;
-using BirthdayBot.Database;
 
 namespace BirthdayBot.Modules
 {
+    // Fail safe in case for whatever reason the bot doesn't do it... Unlikely. 
+    // Uses the Announce class.
     public class forceAnnounce : ModuleBase<SocketCommandContext>
     {
         [Command("check")]

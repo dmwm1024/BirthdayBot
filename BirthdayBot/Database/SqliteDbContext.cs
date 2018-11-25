@@ -1,13 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BirthdayBot.Database
 {
+    // Crude setup for the data connection. Obviously need to rewrite this for portability.
     public class SqliteDbContext : DbContext
     {
         public DbSet<Birthday> Birthdays { get; set; }

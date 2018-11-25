@@ -1,14 +1,13 @@
 ﻿using Discord;
-using Discord.Commands;
 using Discord.WebSocket;
-using System.Linq;
 using System.Threading.Tasks;
-using BirthdayBot.Data;
 using BirthdayBot.Database;
 using System;
 
 namespace BirthdayBot.Modules
 {
+    // This class is used for the timed (daily) birthday announcements.
+    // It is also used for the forceAnnouncement command.
     public class Announce
     {
         public static Task AnnounceBirthdays(DiscordSocketClient Client)
@@ -33,6 +32,7 @@ namespace BirthdayBot.Modules
                 }
             }
 
+            // No announcement will be made if there are no birthdays.
             if (numOfBirthdays > 0)
             {
                 var channel = Client.GetChannel(469899144194949123) as IMessageChannel;

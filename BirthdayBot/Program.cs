@@ -18,7 +18,7 @@ namespace BirthdayBot
         private IServiceProvider _services;
         private System.Threading.Timer timer;
 
-
+        // Core Instantiation 
         public async Task RunBotAsync()
         {
             Console.WriteLine(Assembly.GetEntryAssembly().Location);
@@ -30,7 +30,7 @@ namespace BirthdayBot
                 .AddSingleton(_commands)
                 .BuildServiceProvider();
 
-            string botToken = "NTE2MjI2MjE0NDc0ODA5MzU1.DtwmOg.w1m016zI890oVGei8j-uVvoT-As";
+            string botToken = "token is private";
 
             _client.Log += Log;
 
@@ -40,20 +40,24 @@ namespace BirthdayBot
 
             timer = new System.Threading.Timer(TimedAnnouncement, null, 0, 1000 * 60 * 60 * 24); // 24 hour interval
 
-            await Task.Delay(-1);
+            await Task.Delay(-1); // Simply prevents the bot from terminating.
         }
 
+
+        // Triggers the daily check/announcement of any existing birthdays.
         public async void TimedAnnouncement(object state)
         {
             await Announce.AnnounceBirthdays(_client);
         }
 
+        // Crude logging for dev. File-based logging will be added if I care enough.
         private Task Log(LogMessage arg)
         {
             Console.WriteLine(arg);
             return Task.CompletedTask;
         }
 
+        // These 2 use the Discord API dependency injection to load our modules (commands) and event hooks.
         public async Task RegisterCommandsAsync()
         {
             _client.MessageReceived += HandleCommandAsync;
