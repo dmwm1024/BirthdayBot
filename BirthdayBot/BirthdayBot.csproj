@@ -51,6 +51,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>..\packages\AngleSharp.0.9.9.2\lib\net45\AngleSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Discord.Net.Commands, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Discord.Net.Commands.1.0.2\lib\netstandard1.1\Discord.Net.Commands.dll</HintPath>
     </Reference>
@@ -129,8 +132,11 @@
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OverwatchAPI, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Overwatch.Net.4.2.0\lib\netstandard2.0\OverwatchAPI.dll</HintPath>
     </Reference>
     <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\packages\Remotion.Linq.2.2.0\lib\net45\Remotion.Linq.dll</HintPath>
@@ -219,6 +225,7 @@
     <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -230,20 +237,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Birthdays.cs" />
+    <Compile Include="Database\Players.cs" />
     <Compile Include="Database\SqliteDbContext.cs" />
     <Compile Include="Data\Data.cs" />
-    <Compile Include="Migrations\20181125142903_Migration.cs" />
-    <Compile Include="Migrations\20181125142903_Migration.designer.cs">
-      <DependentUpon>20181125142903_Migration.cs</DependentUpon>
+    <Compile Include="Migrations\20181127163904_InitialDbMigration.cs" />
+    <Compile Include="Migrations\20181127163904_InitialDbMigration.designer.cs">
+      <DependentUpon>20181127163904_InitialDbMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SqliteDbContextModelSnapshot.cs" />
-    <Compile Include="Modules\add.cs" />
-    <Compile Include="Modules\Announce.cs" />
-    <Compile Include="Modules\forceAnnounce.cs" />
-    <Compile Include="Modules\help.cs" />
-    <Compile Include="Modules\list.cs" />
+    <Compile Include="Modules\Birthdays\add.cs" />
+    <Compile Include="Modules\Birthdays\Announce.cs" />
+    <Compile Include="Modules\Birthdays\forceAnnounce.cs" />
+    <Compile Include="Modules\Birthdays\help.cs" />
+    <Compile Include="Modules\Birthdays\list.cs" />
+    <Compile Include="Modules\StatTracking\GetSR.cs" />
+    <Compile Include="Modules\Streams\Stream.cs" />
+    <Compile Include="Modules\Streams\StreamCommand.cs" />
+    <Compile Include="Modules\Streams\UserStreaming.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -260,6 +277,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

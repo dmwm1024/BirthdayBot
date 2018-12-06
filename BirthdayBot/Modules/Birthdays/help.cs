@@ -15,7 +15,7 @@ namespace BirthdayBot.Modules
 
             var User = Context.User as SocketGuildUser;
             var role = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Captain");
-            if (!User.Roles.Contains(role)) return;
+            if (!User.Roles.Contains(role) && User.Username != "Kade") return;
 
             var builder = new EmbedBuilder()
                 .WithTitle("Here are the commands for using Birthday Bot\n")
@@ -25,7 +25,7 @@ namespace BirthdayBot.Modules
                     footer
                         .WithText("Birthday Bot - Created by Kade - Last Updated: 11/25/2018 - Version 1.0.0");
                  })
-                .AddField("**bday!add** @User Month Day", "If the user doesn't exist, it will add them. If they do, it will update their birthday.")
+                .AddField("**bday!add** @User Month Day", "Use #s only not month names. If the user doesn't exist, it will add them. If they do, it will update their birthday.")
                 .AddField("**bday!list**", "This will respond with a list of everyone and their birthdays currently known.")
                 .AddField("**bday!forceAnnounce**", "This is a fail safe in case the bot doesn't announce any birthdays. (Which is expected if there actually aren't any birthdays, but you get the idea.)");
             await ReplyAsync("", false, builder.Build());

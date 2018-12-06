@@ -6,6 +6,7 @@ namespace BirthdayBot.Database
     public class SqliteDbContext : DbContext
     {
         public DbSet<Birthday> Birthdays { get; set; }
+        public DbSet<Player> Players { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder Options)
         {

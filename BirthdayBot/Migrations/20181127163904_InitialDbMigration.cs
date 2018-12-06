@@ -2,7 +2,7 @@
 
 namespace BirthdayBot.Migrations
 {
-    public partial class Migration : Microsoft.EntityFrameworkCore.Migrations.Migration
+    public partial class InitialDbMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,12 +19,29 @@ namespace BirthdayBot.Migrations
                 {
                     table.PrimaryKey("PK_Birthdays", x => x.UserId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Players",
+                columns: table => new
+                {
+                    DiscordID = table.Column<ulong>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    BattleTag = table.Column<string>(nullable: true),
+                    CompetitiveRank = table.Column<ushort>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Players", x => x.DiscordID);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Birthdays");
+
+            migrationBuilder.DropTable(
+                name: "Players");
         }
     }
 }

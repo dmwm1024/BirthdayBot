@@ -12,31 +12,30 @@ namespace BirthdayBot.Modules
     {
         public static Task AnnounceBirthdays(DiscordSocketClient Client)
         {
-            Console.WriteLine($"Checking Today's Birthdays: {DateTime.Now.ToString()}");
-
             Database.Birthday[] birthdays = Data.Data.GetBirthdays();
             var builder = new EmbedBuilder()
-                .WithTitle("Here are our teammates known birthdays!")
+                .WithTitle(BirthdayBot.Properties.Resources.birthdayMessage)
                 .WithColor(new Color(0x8CE3C5))
-                .WithThumbnailUrl("https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX3660468.jpg");
+                .WithImageUrl("https://media.giphy.com/media/xUOxf0vukEHTKkD4ic/giphy.gif");
 
             int numOfBirthdays = 0;
             DateTime today = DateTime.Now;
+            var channel = Client.GetChannel(518977858744614923) as IMessageChannel;
+            string bdayMessage = "Happy Birthday to";
 
             foreach (Birthday bday in birthdays)
             {
                 if (bday.Month == today.Month && bday.Day == today.Day)
                 {
                     numOfBirthdays++;
-                    builder.Description += $"\n{Client.GetUser(bday.UserId).Username} - {bday.Month}/{bday.Day}";
+                    bdayMessage += $" {Client.GetUser(bday.UserId).Mention}";
                 }
             }
 
             // No announcement will be made if there are no birthdays.
             if (numOfBirthdays > 0)
             {
-                var channel = Client.GetChannel(469899144194949123) as IMessageChannel;
-                channel.SendMessageAsync("", false, builder.Build());
+                channel.SendMessageAsync($"{bdayMessage}!", false, builder.Build());
             }
             return Task.CompletedTask;
         }

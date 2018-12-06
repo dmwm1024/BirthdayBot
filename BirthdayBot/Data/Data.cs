@@ -11,7 +11,8 @@ namespace BirthdayBot.Data
         {
             using (var DbContext = new SqliteDbContext())
             {
-                return DbContext.Birthdays.ToArray();
+                Birthday[] bdays = DbContext.Birthdays.OrderBy(e => e.Month).ThenBy(e => e.Day).ToArray();
+                return bdays;
             }
         } 
 

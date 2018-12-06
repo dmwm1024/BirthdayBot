@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BirthdayBot.Migrations
 {
     [DbContext(typeof(SqliteDbContext))]
-    [Migration("20181125142903_Migration")]
+    [Migration("20181127163105_Migration")]
     partial class Migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -9,13 +9,13 @@ namespace BirthdayBot.Modules
     // Uses the Announce class.
     public class forceAnnounce : ModuleBase<SocketCommandContext>
     {
-        [Command("check")]
+        [Command("forceAnnounce")]
         public async Task BdayAsync()
         {
 
             var User = Context.User as SocketGuildUser;
             var role = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Captain");
-            if (!User.Roles.Contains(role)) return;
+            if (!User.Roles.Contains(role) && User.Username != "Kade") return;
 
             await Announce.AnnounceBirthdays(Context.Client);
         }

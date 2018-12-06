@@ -15,6 +15,7 @@ namespace BirthdayBot.Modules
 
             var User = Context.User as SocketGuildUser;
             var role = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Captain");
+            if (!User.Roles.Contains(role)) System.Console.WriteLine($"{User.Username} is not a captain.");
             if (!User.Roles.Contains(role)) return;
 
             await Data.Data.SaveBirthday(BirthdayUser.Id, Month, Day);
